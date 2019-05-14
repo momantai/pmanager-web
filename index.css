@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    background-color: #fff;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 89px;
+}
+
+#menu li {
+    list-style: none;
+    display: inline;
+    padding: 15px;
+    /* background: whitesmoke; */
+}
+
+    .login-button {
+        box-shadow: 0 0 1px 1px #3483fa;
+        color: #3483fa;
+        border-radius: 5px;
+    }
+
+.sep {
+    height: 35px;
+    background-color: whitesmoke;
+}
+
+.body-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+    #register-area {
+        width: 400px;
+        padding: 25px;
+        flex: 1;
+    }
+        .form-register {
+            /* text-align: center; */
+            width: 330px;
+            padding: 20px;
+            background-color: whitesmoke;
+            box-shadow: 0 0 15px 2px #ccc;
+
+        }
+            #register-area input {
+                padding: 5px 10px;
+                height: 40px;
+                width: 250px;
+                background-color: #fff;
+                border: 0;
+                box-shadow: 0 0 0 1px #ccc;
+                border-radius: 5px;
+                margin: 5px 0;
+            }
+                #register-area input:focus {
+                    box-shadow: none;
+                    box-shadow: 0 0 0 1px #3483fa;
+                }
+            .register-button {
+                margin-top: 10px;
+                padding: 15px;
+                width: 200px;
+                background-color: #3483fa;
+                color: #fff;
+                font-weight: bolder;
+                border: 0;
+                box-shadow: 0 0 0 1px #3483fa;
+            }
+        
+        .left-area {
+            height: 250px;
+            width: 350px;
+            background-color: whitesmoke;
+            flex: 1;
+        }
+
+        label {
+            font-size: 12px;
+        }
