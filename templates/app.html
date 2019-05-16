@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Manager App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+    <link rel="stylesheet" href="$ url_for('static', filename='css/app/css/css.css') $">
+    <!-- <link rel="stylesheet" href="css/css.css" /> -->
+</head>
+
+<body>
+    <div id="contentapp">
+        <div id="kproject" data-vm="kproject">
+            <div id="pviews">
+                <div class="alert displayhidden" id="alertt">
+                    <div class="titlep">¡Título actualizado! Correctamente.</div>
+                </div>
+                <div class="modal hidden" id="modal-c-p">
+                    <div class="backg-modal" @click="modalCreate"></div>
+                    <div class="boxModal" id="modalcProject">
+                        <div class="titleModal">
+                            <p class="title">Nuevo Proyecto</p>
+                        </div>
+                        <div class="data-project">
+                            <div class="form">
+                                <input class="formcp" id="NUEVOTITULO" type="text" placeholder="Título de tu nuevo proyecto" />
+                                <!-- <div>
+                                    <label>momantai</label>
+                                    <input class="formcp" type="text" v-model="idpm" v-bind:value="clean"
+                                        placeholder="id-ejemplo-proyecto"
+                                        title="¡Haz que compartir tu proyecto sea más fácil!" />
+                                </div> -->
+                                <div class="opt-form"><span class="btn-create" @click="wCreate">Crear</span><span
+                                        class="btn-cancel" @click="modalCreate">Cancelar</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal hidden" id="modal-p">
+                    <div class="backg-modal" @click="modal"></div>
+                    <div class="boxModal" id="modalProject">
+                        <div class="titleModal">
+                            <p class="title">Editando información de proyecto</p>
+                        </div>
+                        <div class="data-project">
+                            <div class="form">
+                                <input class="formp" id="TITLE" type="text" @blur="updateTitle"
+                                    v-bind:value="datap.title" placeholder="Título" />
+                                <div class="formp" id="DESCRIPTION" @blur="updateDescription"
+                                    data-placeholder="Descripción" contenteditable="true">{{datap.details}}</div>
+                                <label class="formp">{{datap.project_id}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="box-content">
+                        <div id="rboption-between-members-projects">
+                                <form action="">
+                                    <input type="radio" name="rbmember" id="rbproject" checked>
+                                    <label for="rbproject" class="rb-option-home">Proyectos</label>
+                                    <input type="radio" name="rbmember" id="rbmember">
+                                    <label for="rbmember" class="rb-option-home">Miembros</label>
+                                </form>
+                            </div>
+
+                    <div class="show-proyects">
+
+                        <div class="box-topshowproyect">
+                            <div class="search">
+                                <input class="search-input" type="text" name="search" placeholder="Buscar.." />
+                            </div>
+                            <!-- <div class="settings"></div> -->
+                            <div class="box-settings">
+                                <p style='color: slategrey;'>Bienvenido <span style='color: #2893ff;'>Alexis</span>!</p>
+                                <button class="settings"></button>
+                                <div class="menu-settings">
+                                    <ul>
+                                        <li>Opción</li>
+                                        <li>Más opciones</li>
+                                        <li>Salir</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="showbox">
+                            
+                            <div class="contenedordetodo">
+                                <div class="proyect-preview" v-for="pv in dataps">
+                                    <div class="top-project-preview" style="cursor: pointer" @click="opentaskboard(pv.leader, pv.project_id)">
+                                        <div class="title-preview">
+                                            <h4>{{pv.title}}</h4>
+                                        </div>
+                                        <div class="details-preview">
+                                            <p>{{pv.details}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-project-preview">
+                                        <div class="membersofproject">
+                                            <div class="membersop">
+                                                <div v-for='mmbrs in pv.team' :style='{backgroundImage: "url(https://pmanagerd.mybluemix.net/static/img/"+ mmbrs.imgprofile.small +")"}' class="memberop" :title="mmbrs.first_name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="action-edit-project-preview">
+                                            <!-- <a href="#">Editar</a> -->
+                                        </div>
+                                    </div>
+                                    <!-- <div class="title-p"> -->
+                                        <!-- <a :href="'https://www.pmanagerd.bluemix.net/'+pv.owner+'/'+pv.project_id"></a> -->
+                                        <!-- <p style="cursor: pointer" @click="enterProject(pv.owner, pv.proyect_id)">
+                                            {{pv.title}}</p> -->
+                                            <!-- <p style="cursor: pointer" @click="opentaskboard(pv.leader, pv.project_id)">
+                                                    {{pv.title}}</p>
+                                    </div> -->
+                                    <!-- <div class="bottom-p-preview">
+                                        <div class="option-p-preview">
+                                            <div class="op-icon task-icon"></div>
+                                        </div>
+                                        <div class="option-p-preview">
+                                            <div class="op-icon members-icon"></div>
+                                            <div class="op-option"><a href="#">5 Miembros</a></div>
+                                        </div>
+                                        <div class="option-p-preview">
+                                            <div class="op-icon edit-icon"></div>
+                                            <div class="op-option"><a
+                                                    @click="selectProject(pv.leader, pv.project_id)">Editar</a></div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- <div class="membersofproject">
+                                        <div class="membersop">
+                                            <div class="memberop">
+
+                                            </div>
+                                            <div class="memberop">
+                                                
+                                            </div>
+                                            <div class="memberop">
+                                                
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="createPjct" title="Crear un proyecto" @click="modalCreate"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--
+
+        ############## 11111111111111111111 ######################### 888888888888888888888 33333333333
+        77777777777777 ###########3333##### ************************* 999999999999999999999 00000000000
+    -->
+    <!-- Vista del taskboad MOSTRAR/OCUTAR -->
+
+    <div id="contentboard" style="display: none">
+        <div class="box-topshowproyect">
+            <div class="search">
+                <div class="back"></div>
+                <!-- <input class="search-input" type="text" name="search" placeholder="Buscar.." /> -->
+            </div>
+            <div class="settings"></div>
+        </div>
+
+        <div id="main">
+            
+            <!-- <div class="tagback tags">
+                <div class="backtags" v-show="tagOpt">
+                    <a @click="temptask = [], tagOpt = ''">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sin filtros < </a> <span>
+                            {{tagOpt.t}}</span>
+                </div>
+            </div> -->
+
+            <div class="section-one sections">
+                <div class="tboard">
+
+                    <!-- Ventana modal para una nueva tarea -->
+                    <div id="Modal" class="modal hidden">
+                        <div class="backg-modal" @click="oculteEl('Modal', 'hidden')"></div>
+                        <div class="boxModal">
+                            <div class="titleModal">
+                                <p class="title">
+                                    Nuevo Item {{statustem}}
+                                </p>
+                            </div>
+
+                            <div class="contentModal">
+                                <input id="inputNItem" class="inItem" type="text"
+                                    @keyup.13="newTask({m: ''}), oculteEl('Modal', 'hidden')"
+                                    @keyup.esc="titleItem='', tagsItem = [], oculteEl('Modal', 'hidden')"
+                                    v-model="titleItem" placeholder="Ej. Realizar tarea.">
+
+                                <input-tag v-model="tagsItem" placeholder="# Tag"></input-tag>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ventana modal para visualizar la información de una tarea. -->
+                    <div id="modal_task" class="modal hidden">
+                        <div class="backg-modal" @click="taskInformation('')"></div>
+                        <div class="boxModal">
+                            <div class="titleModal">
+                                <p class="title">Editando información de una tarea</p>
+                            </div>
+                            <div id="data_task">
+                                <ol id="sections-data">
+                                    <li class="section-datat">
+                                        <div class="info_task">
+                                            <div v-show="opt.titleEdit == false">
+                                                <span title="Doble click para editar."
+                                                    @dblclick="opt.titleEdit = true, opt.tempTitle = taskdetails.name">
+                                                    {{taskdetails.name}}
+                                                </span>
+                                            </div>
+                                            <input id="textTitle" type="text" 
+                                                v-if="opt.titleEdit"
+                                                @keyup.13="newnametask()"
+                                                @keyup.esc="opt.titleEdit = false, taskdetails.name = opt.tempTitle"
+                                                v-model='taskdetails.name'>
+                                        </div>
+                                    </li>
+                                    <li class="section-datat">
+                                        <div class="description_task">
+                                            <div v-show="opt.descriptionEdit == false">
+                                                <span class="title-sections-dtask">Descripción&nbsp;&nbsp;</span>
+                                                <a @click="opt.descriptionEdit = true, opt.tempInfo = taskdetails.description">
+                                                    Editar
+                                                </a>
+                                                <div class="text-description" v-html="taskdetails.details"></div>
+                                            </div>
+                                            <template v-if="opt.descriptionEdit">
+                                                <span class="title-sections-dtask">Descripción&nbsp;&nbsp;</span>
+                                                <a @click="newdetailstask">Terminar edición</a> | 
+                                                <a @click="opt.descriptionEdit = false, taskdetails.description = opt.tempInfo">
+                                                    Cancelar
+                                                </a>
+                                                <div id="textDescription" 
+                                                    @keyup.esc="newdetailstask"
+                                                    contentEditable="true" 
+                                                    v-html="taskdetails.details">
+                                                </div>
+                                            </template>
+                                            <div class="resources">
+                                                <input id="bfile" style="display:none" ref="bfiles" type="file"
+                                                    v-on:change="nfile">
+                                                <span class="title-sections-dtask">Recursos</span>
+                                                <ol>
+                                                    <li v-for="r in taskresources.resources">
+                                                        <a 
+                                                            :href="url+'/static/files/'+r._id"
+                                                            :download=r.name>
+                                                            {{r.name}}
+                                                        </a>
+                                                    </li>
+                                                </ol>
+                                                <div class="button-newresource" 
+                                                    @click="bfileset">
+                                                    
+                                                    <a>+ Subir recurso</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="to-do">
+                                            <span class="title-sections-dtask">To - do</span>
+                                            <!-- Input para un nuevo elemento de to-do o para editarlo. -->
+                                            <template v-if="!todobolean">
+                                                <input type="text" v-model="todo" @keyup.13="addTodo">
+                                            </template>
+                                            <template v-else>
+                                                <input type="text" v-model="todo" @keyup.13="editTodo(todotempid)">
+                                                <a @click="todobolean = false, todo = ''">Cancelar</a>
+                                            </template>
+                                            
+                                            <!-- Lista de elementos to-do -->
+                                            <ul id="checklist">
+                                                <li v-for="(item, key) in taskresources.todo" :key="key">
+                                                    <div class="textcheck">
+                                                        <input type="checkbox" :id="key" v-model="item.check">
+
+                                                        <label :for="key" @click="checkTodo(key)">
+                                                            {{item.todo}}
+                                                        </label>
+                                                    </div>
+                                                    <div class="optcheck">
+                                                        <a @click="deleteTodo(key)">Borrar</a>
+                                                        <a @click="editTodo(key)">Editar</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task board -->
+                    <div id="todo-board">
+                        <div class="head-taskboard">
+                            <!-- Cabecera de task board, con opciones para crear nueva tarea en listas. -->
+                            <div class="title-head-tb" v-for="i in task.lists" :style='{backgroundColor: i.color}'>
+                                <div class="namelist">
+                                <div class="title-head-board title">
+                                    {{i.td}}
+                                </div>
+                                <div class="icon-more-area">
+
+                                    <button class="icon more" id="moreItemid" @click='statustem=i._id'></button>
+
+                                    <!-- <button class="icon more" id="moreItemid" 
+                                        @click="newItemE(i._id)"
+                                        title="Tarea nueva">
+                                    </button> -->
+
+                                    <div class="boxnewtask">
+                                        <div class="inputnewtask">
+                                            <input class="inputnt" @keyup.13='newTask' @keyup.esc='titleItem=""' v-model='titleItem' type="text" placeholder="Escribe una nueva tarea..">
+                                        </div>
+                                        <div class="cancelnewtask">
+                                            <a href="#" @click='titleItem=""'>Cancelar</a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            </div>
+
+                            <!-- Input para crear una nueva lista de tareas. -->
+                            <div class="title-head-tb newlistinput">
+                                <input type="text" placeholder="Nueva lista +" 
+                                    @keyup.13="newlist" 
+                                    v-model="namenewlist" class='inputnewlist'>
+                            </div>
+                        </div>
+
+                        <div class="container-taskboard">
+                            <div class="task-table" v-for="(i, key) in task.liststodo" :key="key">
+                                <div class="list-group drag">
+                                    <draggable 
+                                        class="dragArea" 
+                                        :list="i.things"
+                                        :options="{handle:'.handle', group:'people'}"
+                                        :id="i._thingstoid"
+                                        @end="End"
+                                        @start="onStart"
+                                        :move="onMove"
+                                        :style='{backgroundColor: task.lists[key].color}'>
+                                        
+                                        <div :id="s._id" class="item-task list-group-item handle" v-for="s in i.things">
+                                            
+                                            <div class="titletask" 
+                                                :id="s._id" 
+                                                @click="taskInformation(s._id, i._thingstoid)">
+                                                
+                                                <p :id="s._id" class="title-task">{{s.name}}</p>
+                                            </div>
+
+                                            <!-- <div class="tags" v-if="s.tag">
+                                                <p v-for="t in s.tag"><span @click="filterTag({t})">{{t}}&nbsp;</span>
+                                                </p>
+                                            </div> -->
+
+                                            <div class="progress" v-if="s.progress">
+                                                <div class="p">
+                                                    {{s.progress}}
+                                                </div>
+                                                <div class="bar"></div>
+                                            </div>
+                                        </div>
+                                    </draggable>
+                                </div>
+                            </div>
+                            <div class="task-table"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.7.0/qs.js"></script>
+    <script src="https://cdn.rawgit.com/khalidsalomao/simple-query-string/22cc5bbe/src/simplequerystring.min.js"></script>
+
+
+    <script src="$ url_for('static', filename='js/app/importsandconfig.js') $"></script>
+    <script src="$ url_for('static', filename='js/app/app.js') $"></script>
+    <script src="$ url_for('static', filename='js/app/pboard.js') $"></script>
+    <script src="$ url_for('static', filename='js/app/betweenwindows.js') $"></script>
+
+    <!-- <script src="importsandconfig.js"></script>
+    <script src="app.js"></script>
+    <script src="pboard.js"></script>
+    <script src="betweenwindows.js"></script> -->
+</body>
+
+</html>

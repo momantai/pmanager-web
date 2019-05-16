@@ -1,0 +1,45 @@
+#checklist {
+    width: 80%;
+}
+
+#checklist a{
+    text-align: end;
+}
+#checklist li {
+    list-style: none;
+    padding: 0.3em 0;
+    display: flex;
+}
+
+.textcheck {
+    flex:1;
+}
+
+#checklist input[type=checkbox] {
+    display: none;
+}
+
+#checklist label {
+    padding-left: 1.6em;
+    position: relative; 
+}
+
+#checklist label::before {
+    content: '';
+    border: 1px solid #ccc;
+    border-radius: 2em;
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    left: 0;
+}
+
+#checklist input[type=checkbox]:checked + label::before {
+    box-shadow: 0 0 0 3px white inset;
+    background: crimson;
+    text-underline-position: below;
+}
+#checklist input[type=checkbox]:checked + label {
+    text-decoration: line-through;
+    color: gray;
+}

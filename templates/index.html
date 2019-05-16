@@ -1,18 +1,18 @@
-{% extends 'plantillas/base.html' %}
+$$ extends 'plantillas/base.html' $$
 
-{% block head %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
-{% endblock %}
+$$ block head $$
+<link rel="stylesheet" href="$ url_for('static', filename='css/index.css') $">
+$$ endblock $$
 
-{% block body %}
+$$ block body $$
 
     <div class="body-page">
         <div class="left-area">
             <h2 style="color: darkslategray;"># Tableros para organizar tus tareas</h2>
             <div class="board">
-                <img src="{{url_for('static', filename='css/img/image.png')}}" alt="">
+                <img src="$ url_for('static', filename='css/img/image.png') $" alt="">
                 <h4 style="color: darkslategray;"># Crea proyectos y actividades</h4>
-                <img src="{{url_for('static', filename='css/img/project.png')}}" alt="">
+                <img src="$ url_for('static', filename='css/img/project.png') $" alt="">
             </div>
         </div>
 
@@ -46,4 +46,4 @@
         </div>
     </div>
 
-{% endblock %}
+$$ endblock $$

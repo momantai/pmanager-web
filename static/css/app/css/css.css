@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Hind');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+/* @import url('./taskboard.css'); */
+@import url('./tbd.css');
+@import url('./modaltask.css');
+@import url('./tabinfo.css');
+@import url('check.css');
+@import url('bararea.css');
+@import url('home.css');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Lato','Open Sans', serif;
+}
+
+body {
+    /* background-color: #f4f6f9; */
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+/* MAIN*/
+
+#main {
+    width:100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+    .sections {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+    @media screen and (max-width: 1027px) {
+        .section-one {
+            flex-grow: 1;
+        }
+        .tboard {
+            width: 750px;
+        }
+
+        .tagback {
+            width: 740px;
+        }
+    }
+        /* .widgets {
+            height: 280px;
+            width: 280px;
+            margin: 5px;
+            background-color: white;
+            box-shadow: 0 0 0 1px rgba(61,70,79,.05),0 1px 3px 0 rgba(61,70,79,.15);
+        } */
+
+/************* Elementos *************************/
+input {
+    height: 37px;
+    border: 1px solid rgba(61, 70, 79, 0.589);
+    border-radius: 5px;
+    padding-left: 8px;
+}
+input:focus {
+    /* box-shadow: 0 0 0 1px rgba(61,70,79,.05),0 1px 3px 0 rgba(61,70,79,.15); */
+}
+
+#Modal .vue-input-tag-wrapper {
+    min-height: 15px;
+    border: 0;
+    width: 280px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+#Modal .input-tag {
+    height: 2em;
+    background-color: #0A84FF;
+    color: white;
+    border: 0;
+    border-radius: 15px;
+}
+
+#Modal .new-tag {
+    min-width: 100px;
+    height: 2em;
+}
+
+#Modal .remove {
+    color: white;
+}
+
+/************* Ventana modal de nuevo Item ***********/
+
+.title {
+    font-weight: lighter;
+    color: #2f4f4f;
+}
+
+.modal, .backg-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backg-modal {
+    /*background-color: rgba(0, 0, 0, 0.918);*/
+}
+
+.hidden  {
+    display: none;
+}
+    .boxModal {
+        width: 317px;
+        height: 167px;
+        background-color: white;
+        border-radius: 5px;
+        position: fixed;
+        z-index: 100;
+        box-shadow: 0 0 50px 10px rgba(61,70,79,.3),0 1px 3px 0 rgba(61,70,79,.3);
+    }
+        .titleModal {
+            width: 100%;
+            height: 27px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            border-bottom: 0.5px solid rgba(34,36,38,.15);
+        }
+        .contentModal {
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+/***************************/
+
+.barra {
+    position: fixed;
+    z-index: 100;
+    height: 100vh;
+    width: 250px;
+    top: 0;
+    left: -200px;
+    background-color: rgb(61,70,79)/*crimson*/;
+    transition: left 0.3s;
+}
+.barra:hover {
+    left: 0px;
+    box-shadow: 0 0 0 3px rgba(61,70,79,.05),0 1px 4px 0px rgba(61,70,79,.45);
+}
+

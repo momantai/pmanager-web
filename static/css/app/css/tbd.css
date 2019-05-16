@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+.section-one.sections {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-grow: 1;
+}
+
+#todo-board {
+    /* width: 800px; */
+
+    width: 100vw;
+
+    /* height: 500px; */
+
+    height: 80vh;
+
+    /* background-color: aliceblue; */
+    overflow: hidden;
+    overflow-x: auto;
+
+    padding: 0 30px 0 30px;
+}
+
+
+.dragArea {
+    min-height: 50px;
+    background-color: rgb(52, 73, 94);
+}
+
+
+
+    .head-taskboard {
+        height: 45px;
+        /* background-color: antiquewhite; */
+        display: flex;
+        /* align-items: center; */
+
+        align-items: flex-end;
+
+        margin: 0;
+    }
+        .title-head-tb {
+            height: 40px;
+            width: 240px;
+            /* background-color: white; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+        }
+            .namelist {
+                width: 240px;
+                /* box-shadow: 0 0 0 1px darkgrey; */
+                border-radius: 5px;
+            }
+
+                .namelist > .title {
+                    color: white;
+                }
+    .container-taskboard {
+        /* background-color: aquamarine; */
+        min-height: 100px;
+        display: flex;
+
+        margin: 0;
+    }
+        .task-table {
+            width: 240px;
+            min-height: 100px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            margin: 0 5px;
+        }
+            .list-group {
+                width: 240px;
+            }
+    
+/**** Item (tarea) dentro de las secciones del taskboard ****/
+.item-task {
+    min-height: 40px;
+    /* margin: 10px 9px 0 8px; */
+
+    margin: 0 9px 10px 8px;
+
+    box-shadow: 0 0 1px white;
+    border-radius: 0.27rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.85em;
+    color: rgba(0,0,0,.68);
+    background-color: white;
+    /* box-shadow: 0 1px 3px 0 #d4d4d5,0 0 0 1px #d4d4d5; */
+    box-shadow: 0 0 0 1px rgba(61,70,79,.05),0 1px 3px 0 rgba(61,70,79,.15);
+}
+    .item-task:hover {
+        background-color: whitesmoke;
+        cursor: default;
+    }
+
+    .title-task {
+        margin: 6px 10px;
+        font-weight: lighter;
+    }
+
+/****************** Botones de acción en el item **********************/
+.action-buttons {
+    margin: 2px 5px;
+    display: none;
+}
+.item-task:hover .action-buttons {
+    display: none;
+}
+    .button-icon {
+        margin-top: 5px;
+        height: 30px;
+        /*border-top: 0.5px solid lightgray;*/
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+        .icon {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            background-color: #5489BF; /*#2f4f4f;*/
+            border-radius: 50px;
+            background-size: 60%;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        .more {
+            background-color: transparent;
+            background-size: 100%;
+        }
+        .icon:hover {
+            opacity: 0.8;
+            
+        }
+        .bg-icon:hover {
+            background-color: #0A84FF;
+        }
+            .comment {
+                background-image: url('./img/comment.svg');
+            }
+            .more {
+                background-image: url('./img/more.svg');
+            }
+            .home {
+                background-image: url('./img/home.svg');
+                height: 40px;
+                width: 40px;
+                border-radius: 0;
+                background-color: initial;
+            }
+
+/**********************************************************/
+
+    .namelist {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0 15px;
+        height: 35px;
+        align-content: center;
+        align-items: center;
+        /* background-color: white; */
+    }
+    .namelist, .icon-more-area {
+        flex-grow: 1;
+        display: flex;
+        align-content: center;
+    }
+    .icon-more-area {
+        justify-content: flex-end;
+    }
+        .icon-more-area button {
+            border: none;
+            border-radius: 50px;
+        }
+
+
+/*************************************************
+        COLORS
+*/
+
+.title-head-tb {
+    background-color: rgb(52, 73, 94);
+
+    border-radius: 10px 10px 0 0;
+}
+
+.task-table {
+    /* background-color: rgb(52, 73, 94); */
+
+    padding-bottom: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.dragArea {
+    padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+    max-height: 435px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+/* SCROLL POR TAREAS */
+
+.dragArea:hover{
+    overflow-y: auto;
+}
+.dragArea::-webkit-scrollbar {
+    width: 4px;
+    position: absolute;
+    right: 0;
+    float: right;
+    opacity: 0;
+}
+.dragArea::-webkit-scrollbar-track {
+    background: #ddd;
+}
+.dragArea::-webkit-scrollbar-thumb {
+    background: #a0bcd4; 
+}
+
+/**************** Scrollbar task board *******************/
+#todo-board:hover{
+    overflow-x: auto;
+}
+#todo-board::-webkit-scrollbar {
+    height: 10px;
+    position: absolute;
+    opacity: 0;
+}
+#todo-board::-webkit-scrollbar-track {
+    background: #ddd;
+}
+#todo-board::-webkit-scrollbar-thumb {
+    background: #a0bcd4; 
+}
+
+
+
+/********************************
+    BOX new Task
+*/
+
+.icon-more-area {
+    position: relative;
+}
+
+.boxnewtask {
+    display: none;
+    position: absolute;
+    width: 210px;
+    height: 85px;
+    /* background-color: white; */
+    background-color: rgba(192, 192, 192, 0.90);
+    top: 25px;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.5),0 1px 5px 1px rgba(0,0,0,.1);
+    border-radius: 5px;
+}   
+    .inputnewtask {
+        display: flex;
+        justify-content: center;
+    }
+    .inputnewtask input {
+        width: 200px;
+        height: 60px;
+        margin-top: 5px;
+        border: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #ccc;
+        outline-style: none;
+    }
+        .inputnewtask input:focus {
+            border-bottom: 1px solid #0A84FF;
+        }
+    .cancelnewtask {
+        padding: 0 5px;
+        text-align: end;
+        font-size: 0.8em;
+    }
+    .cancelnewtask a {
+        color: rgb(52, 73, 94);
+    }
+
+/* Boton more and box */
+
+#moreItemid {
+    outline: none;
+}
+
+#moreItemid:focus + .boxnewtask {
+    display: block;
+}
+    .inputnt:focus + .boxnewtask {
+        display: block;
+    }
+    .boxnewtask:hover {
+        display: block;
+    }
+
+/* Input to new list*/
+
+.newlistinput {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #dedede;
+}
+    .newlistinput input {
+        width: 200px;
+        border-radius: 0;
+        outline: none;
+        background-color: #dedede;
+        border: 0;
+        cursor: pointer;
+    }

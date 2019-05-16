@@ -1,0 +1,17 @@
+#contentboard {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+    .back {
+        background-image: url('img/back.svg');
+        background-size: 100%;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
